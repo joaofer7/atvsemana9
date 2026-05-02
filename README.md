@@ -6,8 +6,7 @@ MATRÍCULA: 928009
 PRINTS:
 
 
-
-![HOMEPAGE](img/homepage.png)
+![HOMEPAGE](img/Screenshot_12.png)
 
 
 
