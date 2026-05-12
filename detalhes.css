@@ -1,0 +1,106 @@
+h1{
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Container Principal de Detalhes */
+#product-details-container {
+    display: flex;
+    justify-content: center;
+    padding: 50px 20px;
+    background-color: #eee; /* Fundo da página cinza como na Home */
+}
+
+/* O Card Azul de Detalhes */
+.product-detail-view {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Divide imagem e info */
+    gap: 20px;
+    background-color: #007bff; /* Azul padrão do seu projeto */
+    width: 100%;
+    max-width: 900px;
+    padding: 30px;
+    border-radius: 15px;
+    border: 2px solid #000; /* Borda preta sólida */
+    box-shadow: 10px 10px 20px rgba(0,0,0,0.2);
+    align-items: center;
+}
+
+/* Coluna da Imagem (Fundo Branco Arredondado) */
+.product-image-column {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-image-column img {
+    max-width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain;
+}
+
+/* Coluna de Informações */
+.product-info-column {
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.category-tag {
+    background: rgba(255,255,255,0.3);
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    width: fit-content;
+}
+
+.product-info-column h1 {
+    font-size: 2.5rem;
+    margin: 10px 0;
+}
+
+.product-info-column .price {
+    color: #ffc107; /* Amarelo ouro como na imagem */
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.product-info-column .description {
+    font-size: 1rem;
+    line-height: 1.4;
+    margin: 15px 0;
+}
+
+/* Botão Comprar Agora (Verde) */
+.btn-buy {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-buy:hover {
+    background-color: #218838;
+}
+
+/* Link de Voltar */
+.btn-back {
+    color: white;
+    text-align: center;
+    text-decoration: underline;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
