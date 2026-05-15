@@ -7,23 +7,24 @@ PRINTS:
 
 _______________________________________________________________________
 SEMANA 9
-![HOMEPAGE](img/Screenshot_12.png)
+![HOMEPAGE](./assets/img/Screenshot_12.png)
 
 
 
-![VER DETALHES](<img/Little-Ecommerce (1).png>)
+![VER DETALHES](<./assets/img/Little-Ecommerce (1).png>)
 
 
 
-![CONSOLE](img/Screenshot_11.png)
+![CONSOLE](./assets/img/Screenshot_11.png)
 
 _______________________________________________________________________
 SEMANA 11
-![HOMEPAGE- ATUALIZADA](img/Little-commerce-Home(atualizado).png)
+![HOMEPAGE- ATUALIZADA](./assets/img/hahah.png)
 
 
-![PAGINA DO PRODUTO- ATUALIZADA](img/Detalhes-do-Produto.png)
+![PAGINA DO PRODUTO- ATUALIZADA](./assets/img/pagproduto.png)
 
 
-![app.js- JSON](img/app-js.png)
+![app.js- JSON](./assets/img/jsonappjs.png)
+![app.js- JSON2](./assets/img/image.png)
 
