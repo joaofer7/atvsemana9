@@ -5,7 +5,7 @@ const data = {
             nome: "Macbook Pro M3", 
             preco: 12499.00, 
             categoria: "Notebook", 
-            imagem: "img/mac.webp", 
+            imagem: "./assets/img/mac.webp", 
             descricao: "O MacBook Pro com chip M3 oferece uma velocidade absurda para fluxos de trabalho pesados.\nPossui uma tela Liquid Retina XDR de 14 polegadas com tecnologia ProMotion e cores vibrantes.\nIdeal para profissionais que buscam bateria para o dia todo e performance extrema em qualquer lugar.", 
             emEstoque: true 
         },
@@ -14,7 +14,7 @@ const data = {
             nome: "iPhone 15 Pro Max", 
             preco: 8599.00, 
             categoria: "Celulares", 
-            imagem: "img/iphone17.webp", 
+            imagem: "./assets/img/iphone17.webp", 
             descricao: "Design em titânio aeroespacial que torna este o modelo Pro mais leve e resistente até hoje.\nEquipado com o chip A17 Pro, garantindo desempenho inigualável em jogos e multitarefa.\nSistema de câmera avançado com zoom óptico de 5x para capturas profissionais em alta resolução.", 
             emEstoque: false 
         },
@@ -23,7 +23,7 @@ const data = {
             nome: "Sony WH-1000XM5", 
             preco: 2880.00, 
             categoria: "Acessórios", 
-            imagem: "img/sony fone.webp", 
+            imagem: "./assets/img/sony fone.webp", 
             descricao: "Líder mundial em cancelamento de ruído, transformando ambientes barulhentos em silêncio absoluto.\nConta com dois processadores que controlam oito microfones para uma clareza de áudio impecável.\nBateria de longa duração com até 30 horas de autonomia e carregamento ultra rápido via USB-C.", 
             emEstoque: true 
         },
@@ -32,7 +32,7 @@ const data = {
             nome: "Samsung Galaxy S24 Ultra", 
             preco: 6999.00, 
             categoria: "Celulares", 
-            imagem: "img/download.webp", 
+            imagem: "./assets/img/download.webp", 
             descricao: "O auge da inteligência artificial móvel com o Galaxy AI, permitindo traduções de chamadas em tempo real.\nEstrutura em titânio e tela plana de 6.8 polegadas com Gorilla Armor para máxima proteção.\nCâmera de 200MP que utiliza processamento por IA para fotos perfeitas mesmo em baixa luminosidade.", 
             emEstoque: true 
         },
@@ -41,7 +41,7 @@ const data = {
             nome: "Apple Watch Series 9", 
             preco: 4900.00, 
             categoria: "Acessórios", 
-            imagem: "img/aw.jpg", 
+            imagem: "./assets/img/aw.jpg", 
             descricao: "O relógio mais avançado da Apple com o novo chip S9, permitindo interações sem tocar na tela.\nSensores de saúde potentes para monitorar oxigênio no sangue, ECG e estágios do sono.\nTela Retina Sempre Ativa com o dobro de brilho para facilitar a leitura sob sol forte.", 
             emEstoque: true 
         },
@@ -50,7 +50,7 @@ const data = {
             nome: "Nintendo Switch OLED", 
             preco: 2600.00, 
             categoria: "Games", 
-            imagem: "img/ns.jpg", 
+            imagem: "./assets/img/ns.jpg", 
             descricao: "Console híbrido com tela OLED de 7 polegadas que proporciona cores vivas e contraste infinito.\nSuporte ajustável amplo para modo semiportátil e 64GB de armazenamento interno para seus jogos.\nÁudio aprimorado nos alto-falantes do console para uma experiência imersiva em qualquer lugar.", 
             emEstoque: false 
         },
@@ -59,7 +59,7 @@ const data = {
             nome: "Kindle Paperwhite", 
             preco: 760.00, 
             categoria: "Acessórios", 
-            imagem: "img/kindle.jpg", 
+            imagem: "./assets/img/kindle.jpg", 
             descricao: "Leitor de livros digitais com tela de 6,8 polegadas e bordas mais finas para uma leitura confortável.\nTemperatura de luz ajustável e bateria que dura semanas, ideal para leitores ávidos.\nTotalmente à prova d'água, permitindo ler na praia, na piscina ou até dentro da banheira.", 
             emEstoque: true 
         },
@@ -68,7 +68,7 @@ const data = {
             nome: "Dell XPS 13", 
             preco: 7449.00, 
             categoria: "Notebook", 
-            imagem: "img/shopping.webp", 
+            imagem: "./assets/img/shopping.webp", 
             descricao: "O notebook premium mais compacto da Dell com tela InfinityEdge de bordas praticamente invisíveis.\nConstruído em alumínio usinado e fibra de carbono para máxima durabilidade com leveza.\nDesempenho potente com processadores Intel Core de última geração para produtividade sem limites.", 
             emEstoque: false 
         }
