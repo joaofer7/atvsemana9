@@ -1,79 +1,106 @@
+
+const dadosIniciais = [
+    { 
+        id: 1, 
+        nome: "Macbook Pro M3", 
+        preco: 12499.00, 
+        categoria: "Notebook", 
+        imagem: "./assets/img/mac.webp", 
+        descricao: "O MacBook Pro com chip M3 oferece uma velocidade absurda para fluxos de trabalho pesados.\nPossui uma tela Liquid Retina XDR de 14 polegadas com tecnologia ProMotion e cores vibrantes.\nIdeal para profissionais que buscam bateria para o dia todo e performance extrema em qualquer lugar.", 
+        emEstoque: true 
+    },
+    { 
+        id: 2, 
+        nome: "iPhone 15 Pro Max", 
+        preco: 8599.00, 
+        categoria: "Celulares", 
+        imagem: "./assets/img/iphone17.webp", 
+        descricao: "Design em titânio aeroespacial que torna este o modelo Pro mais leve e resistente até hoje.\nEquipado com o chip A17 Pro, garantindo desempenho inigualável em jogos e multitarefa.\nSistema de câmera avançado com zoom óptico de 5x para capturas profissionais em alta resolução.", 
+        emEstoque: false 
+    },
+    { 
+        id: 3, 
+        nome: "Sony WH-1000XM5", 
+        preco: 2880.00, 
+        categoria: "Acessórios", 
+        imagem: "./assets/img/sony fone.webp", 
+        descricao: "Líder mundial em cancelamento de ruído, transformando ambientes barulhentos em silêncio absoluto.\nConta com dois processadores que controlam oito microfones para uma clareza de áudio impecável.\nBateria de longa duração com até 30 horas de autonomia e carregamento ultra rápido via USB-C.", 
+        emEstoque: true 
+    },
+    { 
+        id: 4, 
+        nome: "Samsung Galaxy S24 Ultra", 
+        preco: 6999.00, 
+        categoria: "Celulares", 
+        imagem: "./assets/img/download.webp", 
+        descricao: "O auge da inteligência artificial móvel com o Galaxy AI, permitindo traduções de chamadas em tempo real.\nEstrutura em titânio e tela plana de 6.8 polegadas com Gorilla Armor para máxima proteção.\nCâmera de 200MP que utiliza processamento por IA para fotos perfeitas mesmo em baixa luminosidade.", 
+        emEstoque: true 
+    },
+    { 
+        id: 5, 
+        nome: "Apple Watch Series 9", 
+        preco: 4900.00, 
+        categoria: "Acessórios", 
+        imagem: "./assets/img/aw.jpg", 
+        descricao: "O relógio mais avançado da Apple com o novo chip S9, permitindo interações sem tocar na tela.\nSensores de saúde potentes para monitorar oxigênio no sangue, ECG e estágios do sono.\nTela Retina Sempre Ativa com o dobro de brilho para facilitar a leitura sob sol forte.", 
+        emEstoque: true 
+    },
+    { 
+        id: 6, 
+        nome: "Nintendo Switch OLED", 
+        preco: 2600.00, 
+        categoria: "Games", 
+        imagem: "./assets/img/ns.jpg", 
+        descricao: "Console híbrido com tela OLED de 7 polegadas que proporciona cores vivas e contraste infinito.\nSuporte ajustável amplo para modo semiportátil e 64GB de armazenamento interno para seus jogos.\nÁudio aprimorado nos alto-falantes do console para uma experiência imersiva em qualquer lugar.", 
+        emEstoque: false 
+    },
+    { 
+        id: 7, 
+        nome: "Kindle Paperwhite", 
+        preco: 760.00, 
+        categoria: "Acessórios", 
+        imagem: "./assets/img/kindle.jpg", 
+        descricao: "Leitor de livros digitais com tela de 6,8 polegadas e bordas mais finas para uma leitura confortável.\nTemperatura de luz ajustável e bateria que dura semanas, ideal para leitores ávidos.\nTotalmente à prova d'água, permitindo ler na praia, na piscina ou até dentro da banheira.", 
+        emEstoque: true 
+    },
+    { 
+        id: 8, 
+        nome: "Dell XPS 13", 
+        preco: 7449.00, 
+        categoria: "Notebook", 
+        imagem: "./assets/img/shopping.webp", 
+        descricao: "O notebook premium mais compacto da Dell com tela InfinityEdge de bordas praticamente invisíveis.\nConstruído em alumínio usinado e fibra de carbono para máxima durabilidade com leveza.\nDesempenho potente com processadores Intel Core de última geração para produtividade sem limites.", 
+        emEstoque: false 
+    }
+];
+
+
+
+function getProdutos() {
+    const salvo = localStorage.getItem('lc_produtos');
+    if (salvo) {
+        return JSON.parse(salvo);
+    }
+    // Primeira vez: inicializa com dados padrão
+    localStorage.setItem('lc_produtos', JSON.stringify(dadosIniciais));
+    return dadosIniciais;
+}
+
+function setProdutos(lista) {
+    localStorage.setItem('lc_produtos', JSON.stringify(lista));
+}
+
+function getNextId() {
+    const lista = getProdutos();
+    if (lista.length === 0) return 1;
+    return Math.max(...lista.map(p => p.id)) + 1;
+}
+
+
 const data = {
-    produtos: [
-        { 
-            id: 1, 
-            nome: "Macbook Pro M3", 
-            preco: 12499.00, 
-            categoria: "Notebook", 
-            imagem: "./assets/img/mac.webp", 
-            descricao: "O MacBook Pro com chip M3 oferece uma velocidade absurda para fluxos de trabalho pesados.\nPossui uma tela Liquid Retina XDR de 14 polegadas com tecnologia ProMotion e cores vibrantes.\nIdeal para profissionais que buscam bateria para o dia todo e performance extrema em qualquer lugar.", 
-            emEstoque: true 
-        },
-        { 
-            id: 2, 
-            nome: "iPhone 15 Pro Max", 
-            preco: 8599.00, 
-            categoria: "Celulares", 
-            imagem: "./assets/img/iphone17.webp", 
-            descricao: "Design em titânio aeroespacial que torna este o modelo Pro mais leve e resistente até hoje.\nEquipado com o chip A17 Pro, garantindo desempenho inigualável em jogos e multitarefa.\nSistema de câmera avançado com zoom óptico de 5x para capturas profissionais em alta resolução.", 
-            emEstoque: false 
-        },
-        { 
-            id: 3, 
-            nome: "Sony WH-1000XM5", 
-            preco: 2880.00, 
-            categoria: "Acessórios", 
-            imagem: "./assets/img/sony fone.webp", 
-            descricao: "Líder mundial em cancelamento de ruído, transformando ambientes barulhentos em silêncio absoluto.\nConta com dois processadores que controlam oito microfones para uma clareza de áudio impecável.\nBateria de longa duração com até 30 horas de autonomia e carregamento ultra rápido via USB-C.", 
-            emEstoque: true 
-        },
-        { 
-            id: 4, 
-            nome: "Samsung Galaxy S24 Ultra", 
-            preco: 6999.00, 
-            categoria: "Celulares", 
-            imagem: "./assets/img/download.webp", 
-            descricao: "O auge da inteligência artificial móvel com o Galaxy AI, permitindo traduções de chamadas em tempo real.\nEstrutura em titânio e tela plana de 6.8 polegadas com Gorilla Armor para máxima proteção.\nCâmera de 200MP que utiliza processamento por IA para fotos perfeitas mesmo em baixa luminosidade.", 
-            emEstoque: true 
-        },
-        { 
-            id: 5, 
-            nome: "Apple Watch Series 9", 
-            preco: 4900.00, 
-            categoria: "Acessórios", 
-            imagem: "./assets/img/aw.jpg", 
-            descricao: "O relógio mais avançado da Apple com o novo chip S9, permitindo interações sem tocar na tela.\nSensores de saúde potentes para monitorar oxigênio no sangue, ECG e estágios do sono.\nTela Retina Sempre Ativa com o dobro de brilho para facilitar a leitura sob sol forte.", 
-            emEstoque: true 
-        },
-        { 
-            id: 6, 
-            nome: "Nintendo Switch OLED", 
-            preco: 2600.00, 
-            categoria: "Games", 
-            imagem: "./assets/img/ns.jpg", 
-            descricao: "Console híbrido com tela OLED de 7 polegadas que proporciona cores vivas e contraste infinito.\nSuporte ajustável amplo para modo semiportátil e 64GB de armazenamento interno para seus jogos.\nÁudio aprimorado nos alto-falantes do console para uma experiência imersiva em qualquer lugar.", 
-            emEstoque: false 
-        },
-        { 
-            id: 7, 
-            nome: "Kindle Paperwhite", 
-            preco: 760.00, 
-            categoria: "Acessórios", 
-            imagem: "./assets/img/kindle.jpg", 
-            descricao: "Leitor de livros digitais com tela de 6,8 polegadas e bordas mais finas para uma leitura confortável.\nTemperatura de luz ajustável e bateria que dura semanas, ideal para leitores ávidos.\nTotalmente à prova d'água, permitindo ler na praia, na piscina ou até dentro da banheira.", 
-            emEstoque: true 
-        },
-        { 
-            id: 8, 
-            nome: "Dell XPS 13", 
-            preco: 7449.00, 
-            categoria: "Notebook", 
-            imagem: "./assets/img/shopping.webp", 
-            descricao: "O notebook premium mais compacto da Dell com tela InfinityEdge de bordas praticamente invisíveis.\nConstruído em alumínio usinado e fibra de carbono para máxima durabilidade com leveza.\nDesempenho potente com processadores Intel Core de última geração para produtividade sem limites.", 
-            emEstoque: false 
-        }
-    ]
+    get produtos() { return getProdutos(); }
 };
+
 
 const PALETTE = {
     accent:  '#007bff',
@@ -92,13 +119,30 @@ const CAT_COLORS = {
     'Games':      PALETTE.accent4,
 };
 
+
+function groupBy(arr, key) {
+    return arr.reduce((acc, item) => {
+        (acc[item[key]] = acc[item[key]] || []).push(item);
+        return acc;
+    }, {});
+}
+
+function avg(arr) { 
+    return arr.reduce((s,v) => s+v, 0) / arr.length; 
+}
+
+function fmtBRL(v) { 
+    return v.toLocaleString('pt-BR', {style:'currency', currency:'BRL'}); 
+}
+
+
 function renderHome() {
     const productList = document.getElementById('product-list');
     if (!productList) return;
 
     productList.innerHTML = ""; 
 
-    data.produtos.forEach(produto => {
+    getProdutos().forEach(produto => {
         const card = document.createElement('div');
         card.classList.add('product-card');
         
@@ -117,13 +161,14 @@ function renderHome() {
     });
 }
 
+
 function renderDetails() {
     const detailsContainer = document.getElementById('product-details-container');
     if (!detailsContainer) return; 
 
     const params = new URLSearchParams(window.location.search);
     const idParam = parseInt(params.get('id'));
-    const produto = data.produtos.find(p => p.id === idParam);
+    const produto = getProdutos().find(p => p.id === idParam);
 
     if (produto) {
         detailsContainer.innerHTML = `
@@ -150,30 +195,16 @@ function renderDetails() {
 }
 
 function comprar(id) {
-    const produto = data.produtos.find(p => p.id === id);
+    const produto = getProdutos().find(p => p.id === id);
     alert(`Sucesso! "${produto.nome}" foi adicionado ao carrinho.`);
 }
 
-function groupBy(arr, key) {
-    return arr.reduce((acc, item) => {
-        (acc[item[key]] = acc[item[key]] || []).push(item);
-        return acc;
-    }, {});
-}
-
-function avg(arr) { 
-    return arr.reduce((s,v) => s+v, 0) / arr.length; 
-}
-
-function fmtBRL(v) { 
-    return v.toLocaleString('pt-BR', {style:'currency', currency:'BRL'}); 
-}
 
 function buildKPIs() {
     const grid = document.getElementById('kpi-grid');
     if (!grid) return;
 
-    const produtos = data.produtos;
+    const produtos = getProdutos();
     const total = produtos.length;
     const emEstoque = produtos.filter(p => p.emEstoque).length;
     const totalValor = produtos.reduce((s,p) => s+p.preco, 0);
@@ -202,15 +233,16 @@ function buildKPIs() {
     });
 }
 
+
 function buildChartPizza() {
     const canvas = document.getElementById('chartPizza');
     if (!canvas) return;
-
     if (typeof Chart === 'undefined') return;
+
     Chart.defaults.font = { family: "'Syne', sans-serif", size: 12 };
     Chart.defaults.color = PALETTE.muted;
 
-    const por = groupBy(data.produtos, 'categoria');
+    const por = groupBy(getProdutos(), 'categoria');
     const labels = Object.keys(por);
     const values = labels.map(l => por[l].length);
     const colors = labels.map(l => CAT_COLORS[l] || PALETTE.muted);
@@ -239,13 +271,13 @@ function buildChartPizza() {
     });
 }
 
+
 function buildChartBarras() {
     const canvas = document.getElementById('chartBarras');
     if (!canvas) return;
-
     if (typeof Chart === 'undefined') return;
 
-    const por = groupBy(data.produtos, 'categoria');
+    const por = groupBy(getProdutos(), 'categoria');
     const labels = Object.keys(por);
     const values = labels.map(l => Math.round(avg(por[l].map(p => p.preco))));
     const colors = labels.map(l => CAT_COLORS[l] || PALETTE.muted);
@@ -255,6 +287,7 @@ function buildChartBarras() {
         data: {
             labels,
             datasets: [{
+                label: 'Preço Médio (R$)',
                 data: values,
                 backgroundColor: colors.map(c => c + '33'),
                 borderColor: colors,
@@ -270,7 +303,7 @@ function buildChartBarras() {
                 x: { grid: { color: PALETTE.border } },
                 y: {
                     grid: { color: PALETTE.border },
-                    ticks: { callback: v => 'R$ ' + v }
+                    ticks: { callback: v => 'R$ ' + v.toLocaleString('pt-BR') }
                 }
             }
         }
@@ -280,11 +313,11 @@ function buildChartBarras() {
 function buildChartEstoque() {
     const canvas = document.getElementById('chartEstoque');
     if (!canvas) return;
-
     if (typeof Chart === 'undefined') return;
 
-    const emEstoque  = data.produtos.filter(p => p.emEstoque).length;
-    const esgotado   = data.produtos.length - emEstoque;
+    const produtos = getProdutos();
+    const emEstoque  = produtos.filter(p => p.emEstoque).length;
+    const esgotado   = produtos.length - emEstoque;
 
     new Chart(canvas, {
         type: 'doughnut',
@@ -308,13 +341,13 @@ function buildChartEstoque() {
     });
 }
 
+
 function buildChartPrecos() {
     const canvas = document.getElementById('chartPrecos');
     if (!canvas) return;
-
     if (typeof Chart === 'undefined') return;
 
-    const sorted = [...data.produtos].sort((a,b) => b.preco - a.preco);
+    const sorted = [...getProdutos()].sort((a,b) => b.preco - a.preco);
     const labels = sorted.map(p => p.nome.length > 15 ? p.nome.slice(0,15)+'…' : p.nome);
     const values = sorted.map(p => p.preco);
     const colors = sorted.map(p => CAT_COLORS[p.categoria] || PALETTE.muted);
@@ -344,6 +377,7 @@ function buildChartPrecos() {
     });
 }
 
+
 function buildTable() {
     const tbody = document.getElementById('product-table-body');
     if (!tbody) return;
@@ -351,9 +385,10 @@ function buildTable() {
     tbody.innerHTML = "";
     
     const badge = document.getElementById('total-badge');
-    if (badge) badge.textContent = data.produtos.length + ' itens';
+    const produtos = getProdutos();
+    if (badge) badge.textContent = produtos.length + ' itens';
 
-    data.produtos.forEach((p, i) => {
+    produtos.forEach((p, i) => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
             <td style="font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--muted)">${String(i+1).padStart(2,'0')}</td>
@@ -377,6 +412,162 @@ function buildTable() {
     });
 }
 
+
+function renderCrudTable() {
+    const tbody = document.getElementById('crud-table-body');
+    if (!tbody) return;
+
+    const produtos = getProdutos();
+    const badge = document.getElementById('crud-total-badge');
+    if (badge) badge.textContent = produtos.length + ' itens';
+
+    tbody.innerHTML = "";
+    produtos.forEach((p) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td style="font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--muted)">${String(p.id).padStart(2,'0')}</td>
+            <td style="font-weight:600">${p.nome}</td>
+            <td>
+                <span style="font-size:0.75rem;padding:4px 10px;border-radius:20px;
+                    background:${CAT_COLORS[p.categoria] || PALETTE.muted}15;
+                    color:${CAT_COLORS[p.categoria] || PALETTE.muted};
+                    border:1px solid ${CAT_COLORS[p.categoria] || PALETTE.muted}44">
+                    ${p.categoria}
+                </span>
+            </td>
+            <td><span class="price-pill">${fmtBRL(p.preco)}</span></td>
+            <td>
+                <span class="status-badge ${p.emEstoque ? 'status-in' : 'status-out'}">
+                    ${p.emEstoque ? '● Disponível' : '○ Esgotado'}
+                </span>
+            </td>
+            <td>
+                <div class="d-flex gap-2">
+                    <button class="btn-crud btn-edit" onclick="openEditModal(${p.id})">
+                        <i class="fa-solid fa-pen"></i> Editar
+                    </button>
+                    <button class="btn-crud btn-delete" onclick="deleteProduto(${p.id})">
+                        <i class="fa-solid fa-trash"></i> Excluir
+                    </button>
+                </div>
+            </td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+
+function openNewModal() {
+    document.getElementById('modal-title').textContent = 'Novo Produto';
+    document.getElementById('form-id').value = '';
+    document.getElementById('form-nome').value = '';
+    document.getElementById('form-preco').value = '';
+    document.getElementById('form-categoria').value = 'Notebook';
+    document.getElementById('form-imagem').value = '';
+    document.getElementById('form-descricao').value = '';
+    document.getElementById('form-estoque').checked = true;
+
+    const modal = new bootstrap.Modal(document.getElementById('produtoModal'));
+    modal.show();
+}
+
+
+function openEditModal(id) {
+    const produto = getProdutos().find(p => p.id === id);
+    if (!produto) return;
+
+    document.getElementById('modal-title').textContent = 'Editar Produto';
+    document.getElementById('form-id').value = produto.id;
+    document.getElementById('form-nome').value = produto.nome;
+    document.getElementById('form-preco').value = produto.preco;
+    document.getElementById('form-categoria').value = produto.categoria;
+    document.getElementById('form-imagem').value = produto.imagem;
+    document.getElementById('form-descricao').value = produto.descricao;
+    document.getElementById('form-estoque').checked = produto.emEstoque;
+
+    const modal = new bootstrap.Modal(document.getElementById('produtoModal'));
+    modal.show();
+}
+
+
+function salvarProduto() {
+    const id       = document.getElementById('form-id').value;
+    const nome     = document.getElementById('form-nome').value.trim();
+    const preco    = parseFloat(document.getElementById('form-preco').value);
+    const categoria = document.getElementById('form-categoria').value;
+    const imagem   = document.getElementById('form-imagem').value.trim() || './assets/img/shopping.webp';
+    const descricao = document.getElementById('form-descricao').value.trim();
+    const emEstoque = document.getElementById('form-estoque').checked;
+
+    if (!nome || isNaN(preco) || preco <= 0) {
+        alert('Preencha nome e preço corretamente.');
+        return;
+    }
+
+    let lista = getProdutos();
+
+    if (id) {
+        // EDITAR
+        lista = lista.map(p => p.id === parseInt(id) 
+            ? { ...p, nome, preco, categoria, imagem, descricao, emEstoque } 
+            : p
+        );
+        mostrarToast('Produto atualizado com sucesso!', 'success');
+    } else {
+        // CRIAR
+        const novoProduto = {
+            id: getNextId(),
+            nome, preco, categoria, imagem, descricao, emEstoque
+        };
+        lista.push(novoProduto);
+        mostrarToast('Produto criado com sucesso!', 'success');
+    }
+
+    setProdutos(lista);
+
+    // Fechar modal
+    const modalEl = document.getElementById('produtoModal');
+    bootstrap.Modal.getInstance(modalEl).hide();
+
+    renderCrudTable();
+}
+
+
+function deleteProduto(id) {
+    if (!confirm('Tem certeza que deseja excluir este produto?')) return;
+
+    let lista = getProdutos().filter(p => p.id !== id);
+    setProdutos(lista);
+    mostrarToast('Produto excluído.', 'danger');
+    renderCrudTable();
+}
+
+
+function resetarDados() {
+    if (!confirm('Isso irá restaurar todos os produtos originais. Continuar?')) return;
+    localStorage.removeItem('lc_produtos');
+    mostrarToast('Dados restaurados com sucesso!', 'success');
+    renderCrudTable();
+}
+
+
+function mostrarToast(mensagem, tipo) {
+    const container = document.getElementById('toast-container');
+    if (!container) return;
+
+    const toast = document.createElement('div');
+    toast.className = `crud-toast crud-toast-${tipo}`;
+    toast.innerHTML = `<i class="fa-solid ${tipo === 'success' ? 'fa-check-circle' : 'fa-trash'}"></i> ${mensagem}`;
+    container.appendChild(toast);
+
+    setTimeout(() => { toast.classList.add('show'); }, 10);
+    setTimeout(() => { 
+        toast.classList.remove('show'); 
+        setTimeout(() => toast.remove(), 400);
+    }, 3000);
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
     renderHome();
     renderDetails();
@@ -386,4 +577,11 @@ document.addEventListener('DOMContentLoaded', () => {
     buildChartEstoque();
     buildChartPrecos();
     buildTable();
+    renderCrudTable();
+
+    // Botão salvar do modal
+    const btnSalvar = document.getElementById('btn-salvar-produto');
+    if (btnSalvar) {
+        btnSalvar.addEventListener('click', salvarProduto);
+    }
 });

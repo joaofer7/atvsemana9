@@ -38,10 +38,13 @@
 
             <ul class="navbar-nav ms-auto align-items-center">
                 <li class="nav-item">
-                    <a class="nav-link " href="index.html">Home</a>
+                    <a class="nav-link" href="index.html">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active href="dashboard.html">Dashboard</a>
+                    <a class="nav-link active" href="dashboard.html">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="gerenciamento.html">Gerenciar</a>
                 </li>
                 <li class="nav-item ms-lg-3">
                     <button class="btn btn-primary d-flex align-items-center gap-2">
@@ -56,7 +59,6 @@
 
 <main class="container">
     <div class="hero">
-        
         <h1>Painel de <span>Visualização</span></h1>
         <p>Análise interativa do catálogo de produtos com gráficos e métricas em tempo real.</p>
     </div>
@@ -64,7 +66,36 @@
     <div class="section-label">Visão Geral</div>
     <div class="kpi-grid" id="kpi-grid"></div>
 
-   
+    <!-- GRÁFICOS: Pizza e Barras por Categoria -->
+    <div class="section-label">Distribuição por Categoria</div>
+    <div class="charts-grid">
+        <div class="chart-card">
+            <div class="chart-header">
+                <div>
+                    <div class="chart-title">Produtos por Categoria</div>
+                    <div class="chart-subtitle">Distribuição percentual do catálogo</div>
+                </div>
+                <span class="chart-badge">Pizza</span>
+            </div>
+            <div class="chart-container" style="height:260px">
+                <canvas id="chartPizza"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-card">
+            <div class="chart-header">
+                <div>
+                    <div class="chart-title">Preço Médio por Categoria</div>
+                    <div class="chart-subtitle">Média de preços em R$ por segmento</div>
+                </div>
+                <span class="chart-badge">Barras</span>
+            </div>
+            <div class="chart-container" style="height:260px">
+                <canvas id="chartBarras"></canvas>
+            </div>
+        </div>
+    </div>
+
     <div class="section-label">Estoque e Preços</div>
     <div class="charts-grid">
         <div class="chart-card">
