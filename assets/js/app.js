@@ -1,4 +1,10 @@
 
+// Helper: obtém usuário logado do sessionStorage
+function getUsuarioCorrente() {
+    const dados = sessionStorage.getItem('usuarioCorrente');
+    return dados ? JSON.parse(dados) : null;
+}
+
 const dadosIniciais = [
     { 
         id: 1, 
@@ -136,25 +142,106 @@ function fmtBRL(v) {
 }
 
 
+// ─── FAVORITOS ────────────────────────────────────────────────────────────────
+
+/**
+ * Retorna a chave localStorage para os favoritos do usuário logado.
+ */
+function getFavoritosKey() {
+    const usuario = getUsuarioCorrente ? getUsuarioCorrente() : null;
+    if (!usuario) return null;
+    return `favoritos_${usuario.id}`;
+}
+
+/**
+ * Retorna o array de IDs favoritados pelo usuário atual.
+ */
+function getFavoritos() {
+    const key = getFavoritosKey();
+    if (!key) return [];
+    const dados = localStorage.getItem(key);
+    return dados ? JSON.parse(dados) : [];
+}
+
+/**
+ * Salva o array de favoritos no localStorage.
+ */
+function setFavoritos(lista) {
+    const key = getFavoritosKey();
+    if (!key) return;
+    localStorage.setItem(key, JSON.stringify(lista));
+}
+
+/**
+ * Alterna o estado de favorito de um produto.
+ * Exige que o usuário esteja logado.
+ */
+function toggleFavorito(id) {
+    const usuario = getUsuarioCorrente ? getUsuarioCorrente() : null;
+    if (!usuario) {
+        // Usuário não logado: bloqueia e redireciona
+        if (confirm('Você precisa estar logado para favoritar produtos.\nDeseja ir para a tela de login?')) {
+            window.location.href = './modulos/login/index.html';
+        }
+        return;
+    }
+
+    let favoritos = getFavoritos();
+    const index = favoritos.indexOf(id);
+
+    if (index === -1) {
+        favoritos.push(id);
+    } else {
+        favoritos.splice(index, 1);
+    }
+
+    setFavoritos(favoritos);
+    renderHome(); // Re-renderiza para atualizar ícones
+}
+
+// ─── RENDER HOME ──────────────────────────────────────────────────────────────
+
 function renderHome() {
     const productList = document.getElementById('product-list');
     if (!productList) return;
 
     productList.innerHTML = ""; 
+    const favoritos = getFavoritos();
 
     getProdutos().forEach(produto => {
+        const isFav = favoritos.includes(produto.id);
         const card = document.createElement('div');
-        card.classList.add('product-card');
+        
+        // Grid do Bootstrap estruturado
+        card.className = 'col-12 col-sm-6 col-md-4 col-lg-3';
         
         card.innerHTML = `
-            <div class="image-container">
-                <img src="${produto.imagem}" alt="${produto.nome}">
-            </div>
-            <h3>${produto.nome}</h3>
-            <p class="price">R$ ${produto.preco.toFixed(2)}</p>
-            <div class="card-buttons">
-                <a href="detalhes.html?id=${produto.id}" class="btn-link">Ver Detalhes</a>
-                <button class="btn-buy-home" onclick="comprar(${produto.id})">Comprar</button>
+            <div class="card h-100 shadow-sm position-relative border-0 bg-white rounded-3 overflow-hidden">
+                
+                <button class="btn btn-light position-absolute top-0 end-0 m-2 rounded-circle shadow-sm" 
+                        style="width: 36px; height: 36px; z-index: 10; display: flex; align-items: center; justify-content: center; border: none; background-color: rgba(255,255,255,0.9);"
+                        onclick="toggleFavorito(${produto.id})" 
+                        title="${isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}">
+                    <i class="fa-${isFav ? 'solid text-danger' : 'regular text-muted'} fa-heart" style="font-size: 1.1rem; transition: transform 0.2s;"></i>
+                </button>
+                
+                <div class="d-flex align-items-center justify-content-center bg-white p-3" style="height: 200px;">
+                    <img src="${produto.imagem}" alt="${produto.nome}" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+                </div>
+                
+                <div class="card-body d-flex flex-column bg-blue p-3 border-top">
+                    <h3 class="fs-6 fw-bold text-dark text-truncate mb-2" title="${produto.nome}">${produto.nome}</h3>
+                    <p class="fw-bold text-primary fs-5 mb-3">R$ ${produto.preco.toFixed(2)}</p>
+                    
+                    <div class="d-flex gap-2 mt-auto">
+                        <a href="detalhes.html?id=${produto.id}" class="btn btn-outline-secondary btn-sm flex-grow-1 d-flex align-items-center justify-content-center" style="font-size: 0.8rem;">
+                            Ver Detalhes
+                        </a>
+                        <button class="btn btn-primary btn-sm flex-grow-1" style="font-size: 0.8rem;" onclick="comprar(${produto.id})">
+                            Comprar
+                        </button>
+                    </div>
+                </div>
             </div>
         `;
         productList.appendChild(card);

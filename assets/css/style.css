@@ -58,3 +58,55 @@
     font-weight: bold;
     cursor: pointer;
 }
+/* ─── FAVORITO ─────────────────────────────────────────────────── */
+.product-card {
+    position: relative;
+}
+
+.btn-favorito {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    color: #fff;
+    font-size: 1rem;
+    z-index: 2;
+}
+
+.btn-favorito:hover {
+    background: rgba(255,255,255,0.3);
+    transform: scale(1.15);
+}
+
+.btn-favorito.ativo {
+    color: #ff4d6d;
+    background: rgba(255, 77, 109, 0.2);
+}
+
+.product-card.favorited {
+    border: 2px solid #ff4d6d !important;
+    box-shadow: 0 0 0 3px rgba(255,77,109,0.15);
+}
+
+/* Efeito de zoom e suavidade no botão de favorito */
+.btn-favorito i {
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.btn-favorito:hover i {
+    transform: scale(1.2);
+}
+
+/* Garante que o coração ativo mantenha a cor vermelha se você não usar a classe text-danger */
+.btn-favorito.ativo i {
+    color: #dc3545 !important; /* Cor accent2 do seu código (vermelho do Bootstrap) */
+}

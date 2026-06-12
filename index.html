@@ -8,12 +8,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./assets/js/login.js" defer></script>
 </head>
 <body class="bg-light">
 
-   <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm" style="border-bottom: 4px solid #007bff;">
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm py-3" style="border-bottom: 4px solid #007bff;">
     <div class="container">
-        <a class="navbar-brand fw-bold" href="index.html">
+        <a class="navbar-brand fw-bold brand-custom" href="index.html">
             <span class="text-primary">LITTLE</span> COMMERCE
         </a>
 
@@ -23,31 +24,29 @@
 
         <div class="collapse navbar-collapse" id="navbarConteudo">
             
-            <form class="d-flex mx-auto my-2 my-lg-0 w-50">
+            <form class="d-flex mx-auto my-2 my-lg-0 w-50" onsubmit="return false;">
                 <div class="input-group">
-                    <input class="form-control" type="search" placeholder="Buscar produtos..." aria-label="Search">
-                    <button class="btn btn-outline-primary" type="submit">
+                    <input class="form-control border-0 bg-white" type="search" placeholder="Buscar produtos..." aria-label="Search">
+                    <button class="btn btn-outline-primary bg-dark border-secondary" type="button">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </div>
             </form>
 
-            <ul class="navbar-nav ms-auto align-items-center">
+            <ul class="navbar-nav ms-auto align-items-center gap-4 text-uppercase small fw-bold">
                 <li class="nav-item">
-                    <a class="nav-link active" href="index.html">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="dashboard.html">Dashboard</a>
+                    <a class="nav-link nav-link-custom active" href="index.html">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="gerenciamento.html">Gerenciar</a>
+                    <a class="nav-link nav-link-custom " href="dashboard.html">Dashboard</a>
                 </li>
-                <li class="nav-item ms-lg-3">
-                    <button class="btn btn-primary d-flex align-items-center gap-2">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                        <span class="d-none d-sm-inline">Carrinho</span>
-                    </button>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-custom" href="gerenciamento.html">Gerenciar</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-custom" href="favoritos.html">Favoritos</a>
+                </li>
+                
             </ul>
         </div>
     </div>
@@ -60,7 +59,7 @@
 
     <main class="container my-5">
         <div id="product-list" class="row g-4 justify-content-center">
-            </div>
+        </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

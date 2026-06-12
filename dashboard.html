@@ -9,15 +9,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <link rel="stylesheet" href="./assets/css/dashboard.css">
 </head>
 <body>
 
-   <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm" style="border-bottom: 4px solid #007bff;">
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm py-3" style="border-bottom: 4px solid #007bff; font-family: 'Inter', sans-serif;">
     <div class="container">
-        <a class="navbar-brand fw-bold" href="index.html">
+        <a class="navbar-brand fw-bold" href="index.html" style="font-size: 1.25rem; letter-spacing: 2px;">
             <span class="text-primary">LITTLE</span> COMMERCE
         </a>
 
@@ -27,31 +27,29 @@
 
         <div class="collapse navbar-collapse" id="navbarConteudo">
             
-            <form class="d-flex mx-auto my-2 my-lg-0 w-50">
+            <form class="d-flex mx-auto my-2 my-lg-0 w-50" onsubmit="return false;">
                 <div class="input-group">
-                    <input class="form-control" type="search" placeholder="Buscar produtos..." aria-label="Search">
-                    <button class="btn btn-outline-primary" type="submit">
+                    <input class="form-control border-0 bg-white" type="search" placeholder="Buscar produtos..." aria-label="Search">
+                    <button class="btn btn-outline-primary" type="button">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </div>
             </form>
 
-            <ul class="navbar-nav ms-auto align-items-center">
+            <ul class="navbar-nav ms-auto align-items-center gap-4 text-uppercase small fw-bold">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="dashboard.html">Dashboard</a>
+                    <a class="nav-link nav-link-custom" href="index.html">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="gerenciamento.html">Gerenciar</a>
+                    <a class="nav-link nav-link-custom active" href="dashboard.html">Dashboard</a>
                 </li>
-                <li class="nav-item ms-lg-3">
-                    <button class="btn btn-primary d-flex align-items-center gap-2">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                        <span class="d-none d-sm-inline">Carrinho</span>
-                    </button>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-custom" href="gerenciamento.html">Gerenciar</a>
                 </li>
+                 <li class="nav-item">
+                    <a class="nav-link nav-link-custom" href="favoritos.html">Favoritos</a>
+                </li>
+                
             </ul>
         </div>
     </div>
@@ -66,7 +64,6 @@
     <div class="section-label">Visão Geral</div>
     <div class="kpi-grid" id="kpi-grid"></div>
 
-    <!-- GRÁFICOS: Pizza e Barras por Categoria -->
     <div class="section-label">Distribuição por Categoria</div>
     <div class="charts-grid">
         <div class="chart-card">

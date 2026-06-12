@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Commerce - Meus Favoritos</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./assets/js/login.js" defer></script>
+    <style>
+        .fav-empty {
+            text-align: center;
+            padding: 4rem 1rem;
+            color: #6c757d;
+        }
+        .fav-empty i {
+            font-size: 4rem;
+            color: #dee2e6;
+            margin-bottom: 1rem;
+        }
+        .fav-count-badge {
+            background: #ff4d6d;
+            color: #fff;
+            border-radius: 20px;
+            padding: 2px 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm" style="border-bottom: 4px solid #007bff;">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <span class="text-primary">LITTLE</span> COMMERCE
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarConteudo">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarConteudo">
+                <ul class="navbar-nav ms-auto align-items-center gap-1">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gerenciamento.html">Gerenciar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="favoritos.html">
+                            <i class="fa-solid fa-heart me-1"></i>Favoritos
+                        </a>
+                    </li>
+                    <li class="nav-item ms-lg-2" id="area-login">
+                        <!-- Preenchido por login.js -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="container mt-5 text-center">
+        <h2 class="fw-bold">
+            <i class="fa-solid fa-heart text-danger me-2"></i>Meus Favoritos
+            <span class="fav-count-badge ms-2" id="fav-count">0</span>
+        </h2>
+        <p class="text-muted" id="fav-usuario"></p>
+        <hr class="w-25 mx-auto" style="height: 3px; color: #ff4d6d; opacity: 1;">
+    </header>
+
+    <main class="container my-5">
+        <div id="fav-list" class="row g-4 justify-content-center"></div>
+        <div id="fav-empty" class="fav-empty d-none">
+            <i class="fa-regular fa-heart"></i>
+            <h4>Nenhum favorito ainda</h4>
+            <p>Volte para a <a href="index.html">Home</a> e marque seus produtos favoritos!</p>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/app.js"></script>
+    <script>
+        function renderFavoritos() {
+            const usuario = getUsuarioCorrente();
+            if (!usuario) return; // login.js já redireciona se não logado
+
+            // Mostra nome do usuário
+            const favUsuario = document.getElementById('fav-usuario');
+            if (favUsuario) favUsuario.textContent = `Salvos para: ${usuario.nome}`;
+
+            const chave = `favoritos_${usuario.id}`;
+            const favIds = JSON.parse(localStorage.getItem(chave) || '[]');
+            const produtos = getProdutos();
+            const favProdutos = produtos.filter(p => favIds.includes(p.id));
+
+            const favCount = document.getElementById('fav-count');
+            if (favCount) favCount.textContent = favProdutos.length;
+
+            const favList = document.getElementById('fav-list');
+            const favEmpty = document.getElementById('fav-empty');
+
+            if (favProdutos.length === 0) {
+                favList.innerHTML = '';
+                favEmpty.classList.remove('d-none');
+                return;
+            }
+
+            favEmpty.classList.add('d-none');
+            favList.innerHTML = '';
+
+            favProdutos.forEach(produto => {
+                const card = document.createElement('div');
+                card.classList.add('product-card', 'favorited');
+
+                card.innerHTML = `
+                    <button class="btn-favorito ativo" 
+                            onclick="removerFavorito(${produto.id})"
+                            title="Remover dos favoritos">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
+                    <div class="image-container">
+                        <img src="${produto.imagem}" alt="${produto.nome}">
+                    </div>
+                    <h3>${produto.nome}</h3>
+                    <p class="price">R$ ${produto.preco.toFixed(2)}</p>
+                    <div class="card-buttons">
+                        <a href="detalhes.html?id=${produto.id}" class="btn-link">Ver Detalhes</a>
+                        <button class="btn-buy-home" onclick="comprar(${produto.id})">Comprar</button>
+                    </div>
+                `;
+                favList.appendChild(card);
+            });
+        }
+
+        function removerFavorito(id) {
+            const usuario = getUsuarioCorrente();
+            if (!usuario) return;
+
+            const chave = `favoritos_${usuario.id}`;
+            let favIds = JSON.parse(localStorage.getItem(chave) || '[]');
+            favIds = favIds.filter(fid => fid !== id);
+            localStorage.setItem(chave, JSON.stringify(favIds));
+            renderFavoritos();
+        }
+
+        // Aguarda login.js e app.js carregarem
+        document.addEventListener('DOMContentLoaded', () => {
+            renderFavoritos();
+        });
+    </script>
+</body>
+</html>
