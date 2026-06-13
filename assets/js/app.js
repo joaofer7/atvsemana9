@@ -672,3 +672,40 @@ document.addEventListener('DOMContentLoaded', () => {
         btnSalvar.addEventListener('click', salvarProduto);
     }
 });
+function atualizarAreaLogin() {
+
+    const areaLogin = document.getElementById("area-login");
+
+    const usuario = JSON.parse(
+        sessionStorage.getItem("usuarioCorrente")
+    );
+
+    if (usuario) {
+
+        areaLogin.innerHTML = `
+            Olá, ${usuario.nome} |
+            <a href="#" id="btn-sair">Sair</a>
+        `;
+
+        document
+            .getElementById("btn-sair")
+            .addEventListener("click", function (e) {
+
+                e.preventDefault();
+
+                logoutUser();
+            });
+
+    } else {
+
+        areaLogin.innerHTML = `
+            <a href="./modulos/login/index.html">
+                Entrar
+            </a>
+        `;
+    }
+}
+document.addEventListener(
+    "DOMContentLoaded",
+    atualizarAreaLogin
+);
