@@ -47,3 +47,8 @@ E-commerce de produtos de tecnologia com catálogo dinâmico, página de detalhe
 ![](./assets/img/Captura%20de%20tela%202026-06-06%20110002.png)
 
 ---
+ATIVIDADE 15
+
+![Olá USER](./assets/img/ola.png)
+![FUNCIONALIDADE DE FAVORITADO](./assets/img/favoritos.png)
+![PAGINA DE FAVORITOS](./assets/img/pagfav.png)
